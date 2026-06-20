@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PG模拟器 · 再次访问说明页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5fafc;
+      color: #1b2b36;
+      line-height: 1.6;
+      padding: 0 1.25rem;
+      padding-bottom: 3rem;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* hero */
+    .hero {
+      margin: 4rem 0 3rem;
+      text-align: left;
+      padding: 2.5rem 1.8rem;
+      background: linear-gradient(145deg, #d9f0f5 0%, #e6f4f8 80%);
+      border-radius: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -30px;
+      top: -30px;
+      width: 200px;
+      height: 200px;
+      background: rgba(0, 160, 150, 0.08);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 550;
+      letter-spacing: -0.01em;
+      color: #0f3440;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      margin-top: 1.2rem;
+      font-size: 1.15rem;
+      max-width: 640px;
+      color: #1f4d5e;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero .sub {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #3c6e7a;
+    }
+
+    /* 优势网格卡片 */
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 500;
+      margin: 2.8rem 0 1.2rem;
+      color: #124351;
+      border-left: 5px solid #2fb8a0;
+      padding-left: 1rem;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.4rem;
+      box-shadow: 0 6px 20px rgba(0, 120, 110, 0.08);
+      transition: transform 0.15s ease, box-shadow 0.2s;
+      border: 1px solid #d7edef;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0, 130, 120, 0.12);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #115b66;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card h3::before {
+      content: '◆';
+      color: #27b89c;
+      font-size: 1rem;
+    }
+
+    .card p {
+      color: #2c5b66;
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+      line-height: 1.5;
+    }
+
+    /* 说明区 + 叙述段落 */
+    .note-section {
+      background: #ecf7f9;
+      padding: 2rem 2rem 2.2rem;
+      border-radius: 2.2rem;
+      margin: 2.2rem 0;
+    }
+
+    .note-section p {
+      margin-bottom: 1rem;
+      font-size: 1.02rem;
+    }
+
+    .note-section strong {
+      color: #0e5d62;
+    }
+
+    .inline-link {
+      color: #117a6f;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1.5px dashed #7fcbc0;
+      transition: border-bottom 0.15s;
+    }
+
+    .inline-link:hover {
+      border-bottom: 2px solid #0f7568;
+    }
+
+    /* FAQ 摘要 */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem 2rem;
+      margin: 1.5rem 0 2.8rem;
+    }
+
+    .faq-item {
+      background: white;
+      padding: 1rem 1.4rem 1.2rem;
+      border-radius: 1.6rem;
+      border-left: 4px solid #47c2aa;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .faq-item .q {
+      font-weight: 550;
+      color: #093f46;
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 1rem;
+    }
+
+    .faq-item .a {
+      color: #34646e;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 600px) {
+      .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero {
+        padding: 2rem 1.2rem;
+        border-radius: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* 底部 */
+    .footer-note {
+      margin-top: 3.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #cbe1e3;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: #3c6a72;
+    }
+
+    .footer-note a {
+      color: #14796c;
+      text-decoration: none;
+      border-bottom: 1px dotted #9ccfc4;
+    }
+
+    .footer-note a:hover {
+      border-bottom: 1px solid;
+    }
+
+    .small-meta {
+      color: #57858b;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- hero 区：再次访问、收藏 -->
+  <div class="hero">
+    <h1>PG模拟器 · 再次访问</h1>
+    <p>
+      如果你曾打开过这个页面，大概还记得那种轻松的探索感。<br>
+      <a href="https://c-zh-pgsimulator.com" class="inline-link">PG模拟器</a> 一直在这里——不需要每次重新寻找，把链接放在收藏夹里，就多了一个随时可以回来看看的地方。
+    </p>
+    <div class="sub">偶尔回来，也许会发现一些不一样的东西。</div>
+  </div>
+
+  <!-- 优势区：为什么持续关注 -->
+  <h2 class="section-title">一些让你愿意留下来的细节</h2>
+  <div class="grid-cards">
+    <div class="card">
+      <h3>干净界面</h3>
+      <p>没有多余干扰，信息层级清晰。不管是第一次还是第十次打开，视觉感受都足够清爽。</p>
+    </div>
+    <div class="card">
+      <h3>不追赶版本</h3>
+      <p>模拟器保持自己的节奏，不盲目堆叠功能。每个改动都基于实际使用反馈，而非市场热度。</p>
+    </div>
+    <div class="card">
+      <h3>好保存，好返回</h3>
+      <p>无需登录，没有推送弹窗。你可以把页面添加到浏览器书签，下次从侧边栏直接唤醒。</p>
+    </div>
+    <div class="card">
+      <h3>持续记录</h3>
+      <p>团队会间歇性更新使用提示和场景说明，让老用户也能发现之前忽略的细节。</p>
+    </div>
+  </div>
+
+  <!-- 说明区：从叙述角度展开“收藏与再访” -->
+  <div class="note-section">
+    <p>
+      很多工具页面，用完就忘了。而 <strong>PG模拟器</strong> 是个例外——它更像是一个你时不时会想起、点开看看有没有新变化的地方。
+    </p>
+    <p>
+      我们遇到过一些用户说：“原来收藏过，后来换了设备就找不到了。” 为此，我们把域名保持得非常简单：<strong>c-zh-pgsimulator.com</strong>，记忆负担很低。如果你现在有空，不妨把 <a href="https://c-zh-pgsimulator.com" class="inline-link">PG模拟器</a> 添加到手机或电脑的书签栏，之后就能一键抵达。
+    </p>
+    <p>
+      内容方面，模拟器始终围绕“可理解的呈现”来迭代，不搞夸张的数值。每个卡片、每个提示，都尝试说清楚背后的逻辑。这也是为什么一些用户愿意反复回来——他们知道这里的解释是经过推敲的。
+    </p>
+    <p style="margin-bottom: 0;">
+      同时我们也在收集 FAQ 里出现频次较高的问题，逐步补充到页面中，让再次访问的人更快找到自己关心的部分。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要：围绕“再次访问与收藏” -->
+  <h2 class="section-title">常见疑问·摘要</h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <span class="q">Q: 需要注册或登录吗？</span>
+      <span class="a">不需要。打开页面直接使用，没有账户系统，也没有数据收集。</span>
+    </div>
+    <div class="faq-item">
+      <span class="q">Q: 如何快速回到这个页面？</span>
+      <span class="a">推荐将页面添加到浏览器书签。移动端可以用 Safari / Chrome 的“添加到主屏幕”。</span>
+    </div>
+    <div class="faq-item">
+      <span class="q">Q: 内容会频繁变化吗？</span>
+      <span class="a">不会突变。页面会持续优化表述与交互细节，但不会突然改变核心布局。</span>
+    </div>
+    <div class="faq-item">
+      <span class="q">Q: 我能反馈建议吗？</span>
+      <span class="a">可以。页面底部提供了联系说明，团队会阅读每一条合理反馈。</span>
+    </div>
+  </div>
+
+  <!-- 底部链接区域（保留主链接） -->
+  <div class="footer-note">
+    <span>
+      <a href="https://c-zh-pgsimulator.com">PG模拟器</a> · 保持收藏，偶尔回来
+    </span>
+    <span class="small-meta">持续关注 · 细心打磨</span>
+  </div>
+
+</div>
+</body>
+</html>
