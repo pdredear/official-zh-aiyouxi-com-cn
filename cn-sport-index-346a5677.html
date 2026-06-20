@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>信息索引 · 熊猫体育</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+      background: #f5f9fc;
+      color: #1a2b3c;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    /* hero */
+    .hero {
+      background: linear-gradient(145deg, #0b3b4a 0%, #166b7c 100%);
+      color: #eaf7fb;
+      padding: 4rem 0 3.5rem;
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 8px 32px rgba(7, 67, 78, 0.18);
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 span {
+      background: #3ab9c9;
+      color: #05222a;
+      padding: 0 0.3rem 0.1rem;
+      border-radius: 6px 0 6px 0;
+    }
+    .hero .sub {
+      font-size: 1.15rem;
+      opacity: 0.88;
+      max-width: 640px;
+      margin-bottom: 1.8rem;
+      border-left: 4px solid #48d0db;
+      padding-left: 1rem;
+    }
+    .hero .meta-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+    }
+    /* 网格卡片 */
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin: 2.6rem 0 1.8rem;
+      color: #0b3b4a;
+      letter-spacing: -0.01em;
+      border-bottom: 3px solid #b1dfe8;
+      padding-bottom: 0.3rem;
+      display: inline-block;
+    }
+    .grid-card {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.6rem;
+      margin: 1.8rem 0;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 4px 12px rgba(0, 40, 50, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+      border: 1px solid #d9eaf0;
+      transition: box-shadow 0.15s, transform 0.1s;
+    }
+    .card:hover {
+      box-shadow: 0 12px 28px rgba(12, 99, 114, 0.08);
+      border-color: #97d0db;
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #0a4a58;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .card h3::before {
+      content: "▹";
+      color: #2a9bad;
+      font-weight: 400;
+    }
+    .card p, .card li {
+      font-size: 0.95rem;
+      color: #2b4350;
+    }
+    .card ul {
+      list-style: none;
+      margin-top: 0.6rem;
+    }
+    .card ul li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+    .card ul li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: #348a9b;
+    }
+    /* 说明区 带背景 */
+    .explain-block {
+      background: #e3f2f5;
+      border-radius: 28px;
+      padding: 2rem 2.2rem;
+      margin: 2.6rem 0;
+      border-left: 6px solid #1e8296;
+    }
+    .explain-block h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #09414e;
+      margin-bottom: 0.75rem;
+    }
+    .explain-block p {
+      max-width: 780px;
+    }
+    /* FAQ 摘要 */
+    .faq-mini {
+      margin: 2rem 0 2.8rem;
+    }
+    .faq-mini details {
+      background: white;
+      border-radius: 18px;
+      padding: 0.6rem 1.2rem;
+      margin-bottom: 0.7rem;
+      border: 1px solid #cfe0e7;
+      transition: 0.1s;
+    }
+    .faq-mini details[open] {
+      border-color: #53b3c4;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .faq-mini summary {
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      cursor: pointer;
+      color: #105562;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+    .faq-mini summary::before {
+      content: "▼";
+      font-size: 0.75rem;
+      margin-right: 0.6rem;
+      color: #278599;
+      transition: 0.2s;
+    }
+    .faq-mini details[open] summary::before {
+      transform: rotate(180deg);
+    }
+    .faq-mini details p {
+      padding: 0.3rem 0 0.6rem 1.2rem;
+      font-size: 0.92rem;
+      color: #2a4b56;
+      border-top: 1px solid #c8dee5;
+      margin-top: 0.2rem;
+    }
+    /* 底部链接 */
+    .footer-links {
+      border-top: 1px solid #c7dde4;
+      padding: 2rem 0 3rem;
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem 1rem;
+      font-size: 0.95rem;
+      color: #1e5c69;
+    }
+    .footer-links a {
+      color: #156a7a;
+      text-decoration: none;
+      border-bottom: 1px dashed #82becb;
+      transition: 0.1s;
+    }
+    .footer-links a:hover {
+      border-bottom: 2px solid #0d5b68;
+      color: #08343e;
+    }
+    .footer-links .legal {
+      font-size: 0.82rem;
+      opacity: 0.72;
+    }
+    .inline-link {
+      color: #0a6679;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 2px solid #6ebfcf;
+      transition: 0.08s;
+    }
+    .inline-link:hover {
+      background: #cdecf4;
+      border-bottom-color: #1b7b8d;
+    }
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid #308a9d;
+      color: #308a9d;
+      background: transparent;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      transition: 0.15s;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      background: #308a9d;
+      color: white;
+    }
+    /* 移动端 */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 2.8rem 0 2.2rem; }
+      .explain-block { padding: 1.4rem 1.2rem; }
+      .grid-card { grid-template-columns: 1fr; }
+      .footer-links { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- hero 区 + 索引定位 -->
+<section class="hero">
+  <div class="container">
+    <h1>资料整理 · <span>熊猫体育</span></h1>
+    <div class="sub">赛事数据、项目索引与信息聚合 —— 围绕运动场景的内容梳理</div>
+    <span class="meta-tag">📋 信息密度 · 结构化</span>
+    <span class="meta-tag" style="margin-left: 0.5rem;">⚡ 跨项参考</span>
+  </div>
+</section>
+
+<main class="container">
+
+  <!-- 优势区：卡片网格 从索引与整理角度 -->
+  <h2 class="section-title">索引结构</h2>
+  <div class="grid-card">
+    <div class="card">
+      <h3>多维度标签</h3>
+      <p>按运动项目、赛事阶段、队伍/选手、数据年份等维度建立交叉索引，降低信息检索成本。</p>
+    </div>
+    <div class="card">
+      <h3>事实核对基线</h3>
+      <p>每一条内容均对照公开赛程、官方发布或统计记录，避免二次演绎。适用于需要精确背景的用户。</p>
+    </div>
+    <div class="card">
+      <h3>动态目录聚合</h3>
+      <p>通过分类锚点与摘要卡片整合分散信息，可快速定位到所需板块，适合研究型浏览。</p>
+    </div>
+    <div class="card">
+      <h3>场景化分组</h3>
+      <p>从业余赛事、职业联赛到大众健身，按参与层级划分资料集，提供差异化的信息颗粒度。</p>
+    </div>
+  </div>
+
+  <!-- 说明区：从资料整理的定位展开 -->
+  <div class="explain-block">
+    <h2>为什么从「信息整理」切入</h2>
+    <p>运动领域的数据、新闻、规则更新频繁，分散在不同平台。本页尝试以目录式框架对核心信息进行归类，减少重复检索。所有内容均指向可查证的来源，不提供主观预测或承诺。作为索引节点，<a href="https://cn-sport-panda.com" class="inline-link">熊猫体育</a> 聚合了多个运动类目的基础资料与动态提要，适合需要快速概览的使用场景。</p>
+  </div>
+
+  <!-- 特点 / 应用场景 混合卡片区 -->
+  <h2 class="section-title">适用场景举例</h2>
+  <div class="grid-card" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+    <div class="card">
+      <h3>赛事背景调研</h3>
+      <ul>
+        <li>往届成绩与对阵记录</li>
+        <li>赛制变更摘要</li>
+        <li>场地/时区参考</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>项目规则速查</h3>
+      <ul>
+        <li>计分/判罚要点</li>
+        <li>器材与装备规范</li>
+        <li>参赛资格说明</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>数据趋势概览</h3>
+      <ul>
+        <li>赛季胜率/积分分布</li>
+        <li>选手排名变动</li>
+        <li>场均统计对比</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>运动知识存档</h3>
+      <ul>
+        <li>术语对照与简释</li>
+        <li>历史沿革笔记</li>
+        <li>相关组织与链接</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 只展示三个条目 -->
+  <h2 class="section-title" style="border-bottom-color: #a0d3de;">常见索引问题</h2>
+  <div class="faq-mini">
+    <details>
+      <summary>信息更新频率如何？</summary>
+      <p>核心赛事数据随官方发布同步更新；背景知识类内容每季度复核。部分历史记录保持稳定。</p>
+    </details>
+    <details>
+      <summary>是否涵盖所有运动项目？</summary>
+      <p>优先覆盖主流团队项目及部分个人项目，小众项目逐步补充。具体范围可参考站点分类标签。</p>
+    </details>
+    <details>
+      <summary>数据来源是否公开？</summary>
+      <p>所有数据均来自公开赛程、官方统计或经授权的机构报告。不包含非公开或推测性信息。</p>
+    </details>
+  </div>
+
+  <!-- 底部 + 必要链接 -->
+  <div class="footer-links">
+    <div>
+      <a href="https://cn-sport-panda.com">熊猫体育</a> · 信息索引页
+    </div>
+    <div>
+      <span class="legal">内容仅供个人参考 · 不构成专业建议</span>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>
